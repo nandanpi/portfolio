@@ -1,0 +1,26 @@
+package components
+
+import (
+	"github.com/nandanpi/internal/constants"
+	"github.com/windmillcode/go-tmpl/templ"
+)
+
+templ Navbar(navItems constants.NavItemsType) {
+	<div class="font-rubik fixed top-4 w-screen">
+		<div class="mx-auto flex w-[90vw] items-center justify-between p-4">
+			<h1 class="text-xl font-semibold">NANDAN PAI</h1>
+			<ul class="flex gap-8">
+				// {for idx, item := range constants.NavItems}
+				//     <li key={idx}
+				//         class="text-lg text-neutral-300 hover:text-neutral-100"
+				//     >
+				//         {item.Name}
+				//     </li>
+				// {end}
+			</ul>
+			<button class="rounded-lg border border-[#ffc86a] px-4 py-2">
+				Resume
+			</button>
+		</div>
+	</div>
+}

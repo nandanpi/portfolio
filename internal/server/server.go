@@ -9,7 +9,7 @@ import (
 
 	_ "github.com/joho/godotenv/autoload"
 
-	"go-portfolio/internal/database"
+	"github.com/nandanpi/portfolio/internal/database"
 )
 
 type Server struct {

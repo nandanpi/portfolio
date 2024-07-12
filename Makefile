@@ -11,6 +11,7 @@ build:
 
 # Run the application
 run:
+	@templ generate
 	@go run cmd/api/main.go
 
 # Create DB container
@@ -58,4 +59,7 @@ watch:
 	    fi; \
 	fi
 
-.PHONY: all build run test clean
+.PHONY: all build @templ generate run test clean
+
+css:
+	bunx tailwindcss -i views/css/app.css -o public/styles.css --watch 

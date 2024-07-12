@@ -3,9 +3,10 @@ package server
 import (
 	"net/http"
 
+	"portfolio/views/home"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"github.com/nandanpi/portfolio/views/home"
 )
 
 func (s *Server) RegisterRoutes() http.Handler {

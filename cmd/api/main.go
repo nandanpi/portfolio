@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/nandanpi/portfolio/internal/server"
+	"portfolio/internal/server"
 )
 
 func main() {

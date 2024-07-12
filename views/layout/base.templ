@@ -1,5 +1,7 @@
 package layout
 
+import "portfolio/views/components"
+
 templ Base() {
 	<!DOCTYPE html>
 	<html lang="en">
@@ -12,6 +14,7 @@ templ Base() {
 			<script src="https://unpkg.com/htmx.org@1.9.9" defer></script>
 		</head>
 		<body class="flex min-h-screen w-full flex-col gap-8 bg-neutral-700 text-[#ffc86a]">
+			@components.Navbar()
 			{ children... }
 		</body>
 	</html>

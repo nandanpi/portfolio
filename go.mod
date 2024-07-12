@@ -1,4 +1,4 @@
-module github.com/nandanpi/portfolio
+module portfolio
 
 go 1.22.4
 

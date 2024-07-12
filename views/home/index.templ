@@ -1,46 +1,12 @@
 package home
 
-import "github.com/nandanpi/portfolio/views/layout"
+import (
+	"portfolio/views/components"
+	"portfolio/views/layout"
+)
 
 templ Index() {
 	@layout.Base() {
-		<div class="relative flex h-[100svh] w-full items-end justify-center gap-4 overflow-clip text-neutral-300">
-			<div class="items-left z-30 flex h-full max-w-md select-none flex-col justify-center gap-2">
-				<h1 class="font-rubik flex items-end gap-4 text-4xl">
-					I&apos;M
-					<span class="font-sans text-6xl font-bold text-[#ffc86a]">
-						Nandan Pai
-					</span>
-				</h1>
-				<p class="pb-4 text-3xl tracking-wider">
-					FULL STACK & GO 
-					<br/>
-					DEVELOPER
-				</p>
-				<button class="rounded-lg border-[4px] border-[#ffc86a] bg-transparent px-4 py-2 text-2xl text-[#ffc86a] transition-all duration-300 hover:bg-[#ffc86a] hover:text-white">
-					Contact Me
-				</button>
-			</div>
-			<image
-				src="/public/Nandan.png"
-				alt="Nandan Pai"
-				class="pointer-events-none z-30 select-none grayscale h-[50vw]"
-			></image>
-			// <div class="absolute bottom-24 right-[5vw] z-30 flex flex-col items-center gap-4">
-			//   <span class="h-28 w-fit border border-[#ffc86a]"></span>
-			//   {Socials.map((social, idx) => (
-			//     <a
-			//       key={idx}
-			//       href={social.link}
-			//       target="_blank"
-			//       rel="noreferrer"
-			//       class="transition-all duration-300 hover:scale-105 hover:text-[#ffc86a]"
-			//     >
-			//       {social.icon}
-			//     </a>
-			//   ))}
-			// </div>
-			<div class="absolute -bottom-[80%] z-0 h-full w-[200%] rotate-[10deg] bg-[#ffc86a]"></div>
-		</div>
+		@components.Hero()
 	}
 }

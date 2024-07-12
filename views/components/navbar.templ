@@ -1,22 +1,39 @@
 package components
 
-import (
-	"github.com/nandanpi/internal/constants"
-	"github.com/windmillcode/go-tmpl/templ"
-)
+var NavItems = []struct {
+	name string
+	link string
+}{
+	{
+		name: "About",
+		link: "/about",
+	},
+	{
+		name: "Portfolio",
+		link: "/portfolio",
+	},
+	{
+		name: "Others",
+		link: "/about#others",
+	},
+	{
+		name: "Contact",
+		link: "/#contact",
+	},
+}
 
-templ Navbar(navItems constants.NavItemsType) {
-	<div class="font-rubik fixed top-4 w-screen">
+templ Navbar() {
+	<div class="font-rubik fixed top-4 w-screen z-50">
 		<div class="mx-auto flex w-[90vw] items-center justify-between p-4">
 			<h1 class="text-xl font-semibold">NANDAN PAI</h1>
 			<ul class="flex gap-8">
-				// {for idx, item := range constants.NavItems}
-				//     <li key={idx}
-				//         class="text-lg text-neutral-300 hover:text-neutral-100"
-				//     >
-				//         {item.Name}
-				//     </li>
-				// {end}
+				for _,item := range NavItems {
+					<a href={ templ.SafeURL(item.link) }>
+						<li key={ item.name } class="text-lg text-neutral-300 hover:text-neutral-100">
+							{  item.name }
+						</li>
+					</a>
+				}
 			</ul>
 			<button class="rounded-lg border border-[#ffc86a] px-4 py-2">
 				Resume

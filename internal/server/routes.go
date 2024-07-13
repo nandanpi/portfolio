@@ -16,6 +16,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	e.Static("/public", "public")
 	e.GET("/", s.HelloWorldHandler)
+	e.POST("/login", s.HandleLogin)
 
 	return e
 }

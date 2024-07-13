@@ -1,27 +1,5 @@
 package components
 
-var Socials = []struct {
-	icon string
-	link string
-}{
-	{
-		icon: "/public/socials/github.svg",
-		link: "https://github.com/nandanpi",
-	},
-	{
-		icon: "/public/socials/linkedin.svg",
-		link: "https://linkedin.com/en/in/nandanrp09",
-	},
-	{
-		icon: "/public/socials/instagram.svg",
-		link: "https://instagram.com/nandanpi__",
-	},
-	{
-		icon: "/public/socials/twitter.svg",
-		link: "https://x.com/nandanpai5",
-	},
-}
-
 templ Hero() {
 	<div class="relative flex h-[100svh] w-full items-end justify-center gap-4 overflow-clip text-neutral-300">
 		<div class="items-left z-30 flex h-full max-w-md select-none flex-col justify-center gap-2">
@@ -32,7 +10,7 @@ templ Hero() {
 				</span>
 			</h1>
 			<p class="pb-4 text-3xl tracking-wider">
-				FULL STACK & GO 
+				FULL STACK & GO
 				<br/>
 				DEVELOPER
 			</p>
@@ -65,4 +43,26 @@ templ Hero() {
 		</div>
 		<div class="absolute -bottom-[80%] z-0 h-full w-[200%] rotate-[10deg] bg-[#ffc86a]"></div>
 	</div>
+}
+
+var Socials = []struct {
+	icon string
+	link string
+}{
+	{
+		icon: "/public/socials/github.svg",
+		link: "https://github.com/nandanpi",
+	},
+	{
+		icon: "/public/socials/linkedin.svg",
+		link: "https://linkedin.com/en/in/nandanrp09",
+	},
+	{
+		icon: "/public/socials/instagram.svg",
+		link: "https://instagram.com/nandanpi__",
+	},
+	{
+		icon: "/public/socials/twitter.svg",
+		link: "https://x.com/nandanpai5",
+	},
 }

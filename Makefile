@@ -6,7 +6,7 @@ all: build
 build:
 	@echo "Building..."
 	
-	
+	@templ generate
 	@go build -o main cmd/api/main.go
 
 # Run the application
@@ -59,7 +59,7 @@ watch:
 	    fi; \
 	fi
 
-.PHONY: all build @templ generate run test clean
+.PHONY: all build run test clean
 
 css:
 	bunx tailwindcss -i views/css/app.css -o public/styles.css --watch 

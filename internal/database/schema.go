@@ -22,13 +22,13 @@ type Work struct {
 	Description string `json:"description"`
 	GithubLink  string `json:"github_link"`
 	DemoLink    string `json:"demo_link"`
-	ImageLink   string `json:"image_link"`
+	Image       string `json:"image"`
 
 	Published bool `json:"published" gorm:"default:false"`
 
 	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 
-	TechStack []Technology `json:"tech_stack" gorm:"many2many:work_technologies;"`
+	TechStack []*Technology `json:"tech_stack" gorm:"many2many:work_technologies;"`
 }
 
 type Resume struct {
@@ -60,7 +60,7 @@ type Technology struct {
 
 	Published bool `json:"published" gorm:"default:false"`
 
-	Works []Work `json:"works" gorm:"many2many:work_technologies;"`
+	Works []*Work `json:"works" gorm:"many2many:work_technologies;"`
 }
 
 type Experience struct {

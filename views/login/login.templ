@@ -1,0 +1,19 @@
+package login
+
+import (
+	"portfolio/views/components/ui"
+	"portfolio/views/layout"
+)
+
+templ Login() {
+	@layout.Base() {
+		<div class="flex justify-center items-center w-full min-h-screen">
+			<form hx-post="/login" hx-target="#login-response" hx-swap="outerHTML" class="flex flex-col gap-2">
+				<div id="login-response"></div>
+				@ui.Input("text", "username", "Username", "required")
+				@ui.Input("password", "password", "Password", "required")
+				<button type="submit">Login</button>
+			</form>
+		</div>
+	}
+}

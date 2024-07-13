@@ -2,8 +2,7 @@ package server
 
 import (
 	"net/http"
-
-	"portfolio/views/home"
+	"portfolio/internal/auth"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -15,12 +14,9 @@ func (s *Server) RegisterRoutes() http.Handler {
 	e.Use(middleware.Recover())
 
 	e.Static("/public", "public")
-	e.GET("/", s.HelloWorldHandler)
+	e.GET("/", s.HomePageHndler)
+	e.GET("/admin", auth.ProtectedRoute(s.AdminPageHandler))
 	e.POST("/login", s.HandleLogin)
 
 	return e
-}
-
-func (s *Server) HelloWorldHandler(c echo.Context) error {
-	return home.Index().Render(c.Request().Context(), c.Response())
 }

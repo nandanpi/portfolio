@@ -1,36 +1,54 @@
 package server
 
 import (
-	"encoding/json"
+	"fmt"
 	"net/http"
 	"portfolio/internal/auth"
-	"portfolio/internal/types"
+	"portfolio/views/home"
+	"time"
 
 	"github.com/labstack/echo/v4"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func (s *Server) HandleLogin(c echo.Context) error {
-	loginReq := &types.AuthRequest{}
-	json.NewDecoder(c.Request().Body).Decode(loginReq)
 
-	dbUser := s.db.GetUser(c, loginReq.Username)
+	username := c.FormValue("username")
+	password := c.FormValue("password")
 
-	resp := make(map[string]string)
+	dbUser, err := s.db.GetUser(username)
+	fmt.Println(dbUser)
+	if err != nil {
+		return err
+	}
 
-	PassErr := bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(loginReq.Password))
+	PassErr := bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(password))
 	if PassErr != nil {
-		resp["message"] = "Wrong Password"
-		return c.JSON(http.StatusUnauthorized, resp)
-
+		return PassErr
 	}
 
 	token, err := auth.GenerateJWT(dbUser.ID)
 	if err != nil {
-		resp["message"] = "Error generating JWT Token"
-		return c.JSON(http.StatusUnauthorized, resp)
-
+		return err
 	}
 
-	return c.JSON(http.StatusOK, map[string]interface{}{"token": token, "user": map[string]interface{}{"username": dbUser.Username, "id": dbUser.ID}})
+	cookie := new(http.Cookie)
+	cookie.Name = "token"
+	cookie.Value = token
+	cookie.HttpOnly = true
+	cookie.Expires = time.Now().Add(1 * time.Hour)
+	// Only in Prod
+	// cookie.Secure = true
+	cookie.SameSite = http.SameSiteLaxMode
+	c.SetCookie(cookie)
+
+	return nil
+}
+
+func (s *Server) HomePageHndler(c echo.Context) error {
+	return home.Index().Render(c.Request().Context(), c.Response())
+}
+
+func (s *Server) AdminPageHandler(c echo.Context) error {
+	return home.Index().Render(c.Request().Context(), c.Response())
 }

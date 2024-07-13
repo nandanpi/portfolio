@@ -1,12 +1,12 @@
 package auth
 
 import (
-	"net/http"
 	"os"
+	"portfolio/views/login"
 	"time"
 
 	"github.com/golang-jwt/jwt"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 type Claims struct {
@@ -14,7 +14,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-var JWTKey = []byte(os.Getenv("JWT_SECRET"))
+var JWTKey = []byte(os.Getenv("JWT_KEY"))
 
 func GenerateJWT(userID uint) (string, error) {
 	expirationTime := time.Now().Add(24 * time.Hour)
@@ -42,14 +42,16 @@ func verifyToken(tokenString string) (jwt.Claims, error) {
 
 func ProtectedRoute(f func(c echo.Context) error) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		tokenString := c.Request().Header.Get("Authorization")
-		if len(tokenString) == 0 {
-			return c.JSON(401, c.JSON(http.StatusUnauthorized, map[string]string{"message": "Unauthorized"}))
-		}
-		tokenString = tokenString[7:]
-		_, err := verifyToken(tokenString)
+		cookie, err := c.Cookie("token")
 		if err != nil {
-			return c.JSON(http.StatusUnauthorized, map[string]string{"message": "Unauthorized"})
+			// return c.JSON(http.StatusUnauthorized, map[string]string{"message": "Unauthorized"})
+			return login.Login().Render(c.Request().Context(), c.Response())
+		}
+		tokenString := cookie.Value
+		_, err = verifyToken(tokenString)
+		if err != nil {
+			// return c.JSON(http.StatusUnauthorized, map[string]string{"message": "Unauthorized"})
+			return login.Login().Render(c.Request().Context(), c.Response())
 		}
 		return f(c)
 	}

@@ -7,11 +7,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type User struct {
+type Users struct {
 	gorm.Model
 
 	Username string `json:"username" gorm:"unique;not null"`
-	Password string `json:"password" gorm:"not null"`
+	Password string `json:"password" gorm:"not null; size:255"`
 	Role     string `json:"role"`
 }
 
@@ -117,7 +117,7 @@ type ExtraCurricular struct {
 }
 
 func PushSchema(db *gorm.DB) {
-	err := db.AutoMigrate(&User{}, &Work{}, &Resume{}, &Contact{}, &Technology{}, &Experience{}, &Education{}, &Achievement{}, &ExtraCurricular{})
+	err := db.AutoMigrate(&Users{}, &Work{}, &Resume{}, &Contact{}, &Technology{}, &Experience{}, &Education{}, &Achievement{}, &ExtraCurricular{})
 	if err != nil {
 		panic("Failed to migrate database schema")
 	}

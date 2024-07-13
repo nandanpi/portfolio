@@ -9,14 +9,13 @@ import (
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/labstack/echo/v4"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 // Service represents a service that interacts with a database.
 type Service interface {
-	GetUser(c echo.Context, username string) *User
+	GetUser(username string) (Users, error)
 
 	AddWork(req types.AddWorkReq) error
 	UpdateWork(req types.UpdateWorkReq) error

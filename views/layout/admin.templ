@@ -1,20 +1,17 @@
 package layout
 
-import "portfolio/views/components"
-
-templ Base() {
+templ Admin() {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
-			<title>Nandan Pai</title>
+			<title>Admin</title>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<link rel="stylesheet" type="text/css" href="/public/styles.css" media="all"/>
 			<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+			<link rel="stylesheet" type="text/css" href="/public/styles.css" media="all"/>
 			<script src="https://unpkg.com/htmx.org@1.9.9" defer></script>
 		</head>
-		<body class="flex min-h-screen w-full flex-col gap-8 bg-neutral-700 text-primary">
-			@components.Navbar()
+		<body class="flex min-h-screen w-full ">
 			{ children... }
 		</body>
 	</html>

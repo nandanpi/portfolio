@@ -5,7 +5,7 @@ templ Hero() {
 		<div class="items-left z-30 flex h-full max-w-md select-none flex-col justify-center gap-2">
 			<h1 class="font-rubik flex items-end gap-4 text-4xl">
 				I&apos;M
-				<span class="font-sans text-6xl font-bold text-[#ffc86a]">
+				<span class="font-sans text-6xl font-bold text-primary">
 					Nandan Pai
 				</span>
 			</h1>
@@ -14,7 +14,7 @@ templ Hero() {
 				<br/>
 				DEVELOPER
 			</p>
-			<button class="rounded-lg border-[4px] border-[#ffc86a] bg-transparent px-4 py-2 text-2xl text-[#ffc86a] transition-all duration-300 hover:bg-[#ffc86a] hover:text-white">
+			<button class="rounded-lg border-[4px] border-primary bg-transparent px-4 py-2 text-2xl text-primary transition-all duration-300 hover:bg-primary hover:text-white">
 				Contact Me
 			</button>
 		</div>
@@ -24,14 +24,14 @@ templ Hero() {
 			class="pointer-events-none z-30 select-none grayscale h-[50vw]"
 		></image>
 		<div class="absolute bottom-24 right-[5vw] z-30 flex flex-col items-center gap-4">
-			<span class="h-28 w-fit border border-[#ffc86a]"></span>
+			<span class="h-28 w-fit border border-primary"></span>
 			for _, item := range Socials {
 				<a
 					key={ item.link }
 					href={ templ.SafeURL(item.link) }
 					target="_blank"
 					rel="noreferrer"
-					class="transition-all duration-300 hover:scale-105 hover:text-[#ffc86a]"
+					class="transition-all duration-300 hover:scale-105 hover:text-primary"
 				>
 					<img
 						src={ item.icon }
@@ -41,7 +41,7 @@ templ Hero() {
 				</a>
 			}
 		</div>
-		<div class="absolute -bottom-[80%] z-0 h-full w-[200%] rotate-[10deg] bg-[#ffc86a]"></div>
+		<div class="absolute -bottom-[80%] z-0 h-full w-[200%] rotate-[10deg] bg-primary"></div>
 	</div>
 }
 

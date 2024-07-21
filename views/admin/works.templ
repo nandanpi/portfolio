@@ -1,0 +1,104 @@
+package admin
+
+import (
+	"fmt"
+	"portfolio/internal/database"
+	"portfolio/views/components/ui"
+	"portfolio/views/layout"
+)
+
+templ Works(works []database.Work) {
+	@layout.Admin() {
+		<div class="relative w-full overflow-auto">
+			<table class="max-w-3xl caption-bottom text-sm mx-auto ">
+				<thead class="[&_tr]:border-b inline-div py-2">
+					<tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted py-2">
+						<th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 py-2">
+							Title
+						</th>
+						<th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
+							Description
+						</th>
+						<th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
+							Github Link
+						</th>
+						<th class="h-12 px-4 align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 text-right">
+							Demo Link
+						</th>
+						<th class="h-12 px-4 align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0 text-right">
+							Status
+						</th>
+					</tr>
+				</thead>
+				<tbody class="[&_tr:last-child]:border-0">
+					for _, work := range works {
+						<tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+							<td class="p-4 align-middle [&:has([role=checkbox])]:pr-0 font-medium">{ work.Title }</td>
+							<td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">{ work.Description }</td>
+							<td class="p-4 align-middle [&:has([role=checkbox])]:pr-0"><a href={ templ.SafeURL(work.GithubLink) } target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Github</a></td>
+							<td class="p-4 align-middle [&:has([role=checkbox])]:pr-0 text-right">
+								<a href={ templ.SafeURL(work.DemoLink) } target="_blank" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Demo</a>
+							</td>
+							<td class="p-4 align-middle [&:has([role=checkbox])]:pr-0 text-right">
+								<button
+									class="bg-green-500 text-white px-4 py-2 rounded-lg"
+									hx-post={ fmt.Sprintf("/toggleWorkPublished/%d", work.ID) }
+									hx-on="htmx:afterRequest: window.location.reload();"
+								>
+									if work.Published {
+										UnPublish
+									} else {
+										Publish
+									}
+								</button>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+		<div class="absolute bottom-5 right-5">
+			@ui.Modal("Create Work", createWork())
+		</div>
+	}
+}
+
+templ createWork() {
+	<div class="p-6">
+		<form class="grid gap-4" hx-post="/addWork" hx-on="htmx:afterRequest: window.location.reload();">
+			<div class="grid gap-2">
+				@ui.Label("Title")
+				@ui.Input("text", "title", "Title")
+			</div>
+			<div class="grid gap-2">
+				@ui.Label("Description")
+				@ui.Input("text", "description", "Description")
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+				<div class="grid gap-2">
+					@ui.Label("Image")
+					@ui.Input("text", "image", "Image")
+				</div>
+				<div class="grid gap-2">
+					@ui.Label("Github Link")
+					@ui.Input("text", "github_link", "Github Link")
+				</div>
+			</div>
+			<div class="grid grid-cols-2 gap-4">
+				<div class="grid gap-2">
+					@ui.Label("Demo Link")
+					@ui.Input("text", "demo_link", "Demo Link")
+				</div>
+				<div class="grid gap-2">
+					@ui.Label("Tech Stack")
+					@ui.Input("text", "tech_stack", "Tech Stack")
+				</div>
+			</div>
+			<div class="flex justify-end">
+				<button type="submit" class="bg-black text-white px-4 py-2 rounded-lg">
+					Add Work
+				</button>
+			</div>
+		</form>
+	</div>
+}

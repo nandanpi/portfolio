@@ -1,0 +1,23 @@
+package ui
+
+templ Modal(title string, content templ.Component) {
+	<button data-open-modal class="bg-black text-white px-5 py-2 rounded-lg">{ title }</button>
+	<dialog data-modal class="rounded-lg p-6 min-w-[20rem]">
+		<div class="flex justify-between items-center gap-8">
+			<h1 class="text-xl font-bold">{ title }</h1>
+			<button class="hover:border border-black text-xl  px-2 aspect-square rounded-lg" data-close-modal>x</button>
+		</div>
+		@content
+	</dialog>
+	<script>
+        var modal = $('dialog[data-modal]');
+        var openModal = $('button[data-open-modal]');
+        var closeModal = $('button[data-close-modal]');
+        openModal.on('click', function() {
+            modal.get(0).showModal();
+        });
+        closeModal.on('click', function() {
+            modal.get(0).close();
+        });
+</script>
+}

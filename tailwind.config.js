@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./**/*.html", "./**/*.templ", "./**/*.go"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#ffc86a",
+      },
+    },
   },
   plugins: [],
 };

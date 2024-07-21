@@ -26,8 +26,6 @@ type Work struct {
 
 	Published bool `json:"published" gorm:"default:false"`
 
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
-
 	TechStack []*Technology `json:"tech_stack" gorm:"many2many:work_technologies;"`
 }
 
@@ -38,8 +36,6 @@ type Resume struct {
 	Link  string `json:"link"`
 
 	Published bool `json:"published" gorm:"default:false"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 type Contact struct {
@@ -48,8 +44,6 @@ type Contact struct {
 	Name    string `json:"name"`
 	Email   string `json:"email"`
 	Message string `json:"message"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 type Technology struct {
@@ -75,8 +69,6 @@ type Experience struct {
 	EndDate     time.Time `json:"end_date"`
 
 	Published bool `json:"published" gorm:"default:false"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 type Education struct {
@@ -88,8 +80,6 @@ type Education struct {
 	StartDate time.Time `json:"start_date"`
 	EndDate   time.Time `json:"end_date"`
 	Published bool      `json:"published" gorm:"default:false"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 type Achievement struct {
@@ -100,8 +90,6 @@ type Achievement struct {
 	Image       string    `json:"image"`
 	Date        time.Time `json:"date"`
 	Published   bool      `json:"published" gorm:"default:false"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 type ExtraCurricular struct {
@@ -112,8 +100,6 @@ type ExtraCurricular struct {
 	Image       string    `json:"image"`
 	Date        time.Time `json:"date"`
 	Published   bool      `json:"published" gorm:"default:false"`
-
-	CreatedAt string `json:"created_at" gorm:"default:current_timestamp"`
 }
 
 func PushSchema(db *gorm.DB) {

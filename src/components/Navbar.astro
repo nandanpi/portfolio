@@ -1,0 +1,84 @@
+---
+import { Menu } from "lucide-react";
+---
+
+<nav class="fixed top-6 left-6 right-6 z-50">
+    <div
+        class="bg-slate-800/80 backdrop-blur-md rounded-2xl border border-slate-700/50 shadow-lg"
+    >
+        <div class="flex items-center justify-between px-6 py-4">
+            <a href="/" class="text-lg font-medium text-white">
+                Nandan R Pai
+            </a>
+            <div class="hidden md:flex items-center space-x-4">
+                <a
+                    href="/about"
+                    class="px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200"
+                >
+                    About
+                </a>
+                <a
+                    href="/projects"
+                    class="px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200"
+                >
+                    Work
+                </a>
+                <a
+                    href="/contact"
+                    class="px-4 py-2 rounded-xl bg-cyan-500 text-slate-900 hover:bg-cyan-400 transition-all duration-200"
+                >
+                    Contact
+                </a>
+            </div>
+
+            <button
+                id="menu-toggle"
+                class="p-2 rounded-xl md:hidden bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
+            >
+                <Menu />
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden px-6 pb-6 md:hidden">
+            <div class="flex flex-col space-y-3">
+                <a
+                    href="/about"
+                    class="px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200"
+                >
+                    About
+                </a>
+                <a
+                    href="/projects"
+                    class="px-4 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-slate-700/50 transition-all duration-200"
+                >
+                    Work
+                </a>
+                <a
+                    href="/contact"
+                    class="px-4 py-3 rounded-xl bg-cyan-500 text-slate-900 hover:bg-cyan-400 transition-all duration-200 text-center"
+                >
+                    Contact
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener("click", () => {
+                const isHidden = mobileMenu.classList.contains("hidden");
+
+                if (isHidden) {
+                    mobileMenu.classList.remove("hidden");
+                } else {
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+        }
+    });
+</script>

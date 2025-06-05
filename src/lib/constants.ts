@@ -1,3 +1,5 @@
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+
 export const techStack = [
   {
     name: "React",
@@ -38,5 +40,24 @@ export const techStack = [
     name: "TensorFlow",
     category: "AI/ML",
     color: "bg-orange-500/20 text-orange-300 border-orange-500/30",
+  },
+];
+
+export const socials = [
+  {
+    link: "https://github.com/nandanpi",
+    icon: Github,
+  },
+  {
+    link: "https://www.linkedin.com/in/nandanpai09",
+    icon: Linkedin,
+  },
+  {
+    link: "https://x.com/nandanpi11",
+    icon: Twitter,
+  },
+  {
+    link: "mailto:nandanrp09@gmail.com",
+    icon: Mail,
   },
 ];

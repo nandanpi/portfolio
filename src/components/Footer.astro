@@ -1,0 +1,28 @@
+---
+import { socials } from "../lib/constants";
+---
+
+<footer class="w-full py-8 px-4 mt-auto">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <p class="text-sm opacity-75">
+            © {new Date().getFullYear()} Nandan R Pai
+        </p>
+
+        <ul class="flex gap-4 flex-wrap">
+            {
+                socials.map((link) => (
+                    <li>
+                        <a
+                            href={link.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-sm transition-all opacity-75 hover:opacity-100"
+                        >
+                            <link.icon class="size-4" aria-hidden="true" />
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</footer>

@@ -10,6 +10,7 @@ import {
     ArrowDown,
     Book,
 } from "lucide-react";
+import { socials } from "../lib/constants";
 ---
 
 <section class="pt-32 md:pt-[12rem] pb-20 px-6">
@@ -137,48 +138,21 @@ import {
                     >Connect</span
                 >
                 <div class="flex items-center space-x-3">
-                    <a
-                        href="https://github.com/nandanpi"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
-                    >
-                        <Github
-                            size={18}
-                            class="text-slate-300 hover:text-cyan-400 transition-colors"
-                        />
-                    </a>
-                    <a
-                        href="https://www.linkedin.com/in/nandanpai09"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
-                    >
-                        <Linkedin
-                            size={18}
-                            class="text-slate-300 hover:text-cyan-400 transition-colors"
-                        />
-                    </a>
-                    <a
-                        href="https://x.com/nandanpi11"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
-                    >
-                        <Twitter
-                            size={18}
-                            class="text-slate-300 hover:text-cyan-400 transition-colors"
-                        />
-                    </a>
-                    <a
-                        href="mailto:nandanrp09@gmail.com"
-                        class="p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
-                    >
-                        <Mail
-                            size={18}
-                            class="text-slate-300 hover:text-cyan-400 transition-colors"
-                        />
-                    </a>
+                    {
+                        socials.map((item) => (
+                            <a
+                                href={item.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="p-3 rounded-xl bg-slate-800 border border-slate-700 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-200"
+                            >
+                                <item.icon
+                                    size={18}
+                                    class="text-slate-300 hover:text-cyan-400 transition-colors"
+                                />
+                            </a>
+                        ))
+                    }
                 </div>
             </div>
             <div
